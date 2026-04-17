@@ -333,9 +333,39 @@ box-shadow:
 <input 
 id="password" 
 type="password" 
-placeholder="Enter Password">
+placeholder="Enter Password"
+style="padding-right:40px;">
 
+<!-- ปุ่มรูปตา -->
+<button 
+type="button"
+onclick="togglePassword()"
+id="eyeBtn"
+style="
+position:absolute;
+right:8px;
+top:50%;
+transform:translateY(-50%);
+background:none;
+border:none;
+cursor:pointer;
+padding:0;
+">
 
+<svg id="eyeIcon" viewBox="0 0 24 24" width="20" height="20">
+
+<!-- eye outline -->
+<path fill="#555"
+d="M12 5c-7 0-10 7-10 7s3 7 10 7 
+10-7 10-7-3-7-10-7zm0 
+12a5 5 0 110-10 5 5 0 010 10z"/>
+
+<!-- pupil -->
+<circle cx="12" cy="12" r="2" fill="#555"/>
+
+</svg>
+
+</button>
 
 </div>
 
@@ -1399,6 +1429,50 @@ toast.style.display="none";
 
 }
 
+function togglePassword(){
+
+let input =
+document.getElementById("password");
+
+let icon =
+document.getElementById("eyeIcon");
+
+/* ถ้าเป็น password → show */
+
+if(input.type === "password"){
+
+input.type = "text";
+
+/* เปลี่ยนเป็น eye-off */
+
+icon.innerHTML = `
+<path fill="#555"
+d="M12 5c-7 0-10 7-10 7s3 7 10 7 
+10-7 10-7-3-7-10-7zm0 
+12a5 5 0 110-10 5 5 0 010 10z"/>
+<line x1="3" y1="3" x2="21" y2="21"
+stroke="#555"
+stroke-width="2"/>
+`;
+
+}else{
+
+input.type = "password";
+
+/* กลับเป็น eye */
+
+icon.innerHTML = `
+<path fill="#555"
+d="M12 5c-7 0-10 7-10 7s3 7 10 7 
+10-7 10-7-3-7-10-7zm0 
+12a5 5 0 110-10 5 5 0 010 10z"/>
+<circle cx="12" cy="12" r="2" fill="#555"/>
+`;
+
+}
+
+}
+  
 function toggleDark(){
 
 document.body.classList.toggle("dark");
