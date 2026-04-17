@@ -1,0 +1,527 @@
+<!DOCTYPE html>
+<html lang="th">
+<head>
+
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width,initial-scale=1.0">
+
+<title>Copy Script</title>
+
+<style>
+
+:root{
+--main:#f4b942;
+--dark:#e09a2d;
+--light:#ffd166;
+--active:#b86b1b;
+--bg:#fff6e5;
+}
+
+body{
+margin:0;
+font-family:Arial;
+background:var(--bg);
+}
+
+.logo{
+display:flex;
+align-items:center;
+gap:10px;
+}
+
+.logo img{
+width:34px;
+height:34px;
+border-radius:50%;
+object-fit:cover;
+}
+
+.navbar{
+position:sticky;
+top:0;
+background:var(--main);
+color:white;
+display:flex;
+justify-content:space-between;
+align-items:center;
+padding:12px 30px;
+z-index:1000;
+box-shadow:0 4px 12px rgba(0,0,0,0.15);
+}
+
+.navbar a{
+color:white;
+text-decoration:none;
+margin-left:15px;
+font-weight:bold;
+}
+
+
+
+#snow{
+position:fixed;
+top:0;
+left:0;
+width:100%;
+height:100%;
+z-index:0;
+pointer-events:none;
+}
+
+
+
+.container{
+max-width:900px;
+margin:auto;
+padding:40px 20px;
+position:relative;
+z-index:1;
+}
+
+
+
+.script-box{
+
+background:linear-gradient(180deg,#ffffff,#fff6e5);
+padding:30px;
+border-radius:14px;
+
+box-shadow:
+0 12px 28px rgba(0,0,0,0.15),
+0 0 0 2px rgba(255,209,102,0.4);
+
+transition:0.25s ease;
+}
+
+.script-box:hover{
+
+box-shadow:
+0 14px 34px rgba(0,0,0,0.2),
+0 0 0 2px rgba(224,154,45,0.6);
+
+transform:translateY(-4px);
+
+}
+
+.title{
+font-size:26px;
+margin-bottom:10px;
+}
+
+
+
+.status{
+color:green;
+font-size:14px;
+margin-bottom:20px;
+}
+
+
+
+.section{
+margin-top:25px;
+}
+
+.section h3{
+margin-bottom:10px;
+}
+
+
+
+textarea{
+
+width:100%;
+height:220px;
+
+padding:12px;
+
+border-radius:8px;
+border:1px solid var(--light);
+
+font-family:monospace;
+
+resize:none;
+
+}
+
+textarea:focus{
+
+outline:none;
+
+border:1px solid var(--main);
+
+box-shadow:0 0 0 2px rgba(255,209,102,0.4);
+
+}
+
+
+.copy-btn{
+
+margin-top:14px;
+
+background:var(--main);
+color:white;
+
+border:none;
+
+padding:12px 22px;
+
+border-radius:8px;
+
+cursor:pointer;
+
+font-size:15px;
+
+transition:0.25s ease;
+
+box-shadow:0 4px 12px rgba(224,154,45,0.25);
+
+}
+
+.copy-btn:hover{
+
+background:var(--dark);
+
+box-shadow:0 8px 20px rgba(224,154,45,0.45);
+
+transform:scale(1.05);
+
+}
+
+
+
+#toast{
+
+position:fixed;
+
+bottom:40px;
+left:50%;
+
+transform:translateX(-50%);
+
+background:var(--main);
+color:white;
+
+padding:12px 20px;
+
+border-radius:8px;
+
+opacity:0;
+
+transition:.4s;
+
+z-index:999;
+
+}
+
+#toast.show{
+opacity:1;
+}
+
+
+
+.back{
+
+display:inline-block;
+
+margin-top:20px;
+
+color:var(--main);
+text-decoration:none;
+font-weight:bold;
+
+}
+
+
+
+@media(max-width:600px){
+
+.title{
+font-size:22px;
+}
+
+textarea{
+height:180px;
+}
+
+}
+
+</style>
+
+</head>
+
+<body>
+
+<canvas id="snow"></canvas>
+
+
+
+<div class="navbar">
+
+<div class="logo">
+  <img src="mascot.png">
+  <b>Zynrax Hub</b>
+</div>
+
+<div>
+<a href="index.html">Home</a>
+<a href="index.html#scripts">Download</a>
+<a href="https://www.youtube.com/@zynraxxx" target="_blank">YouTube</a>
+</div>
+
+</div>
+
+<div class="container">
+
+<div class="script-box">
+
+<div class="title" id="title"></div>
+
+<div class="status">🟢 Script Status : Working</div>
+
+<div class="section">
+
+<h2>details</h2>
+
+<p>✨ <b>Roblox Auto Script Guide</b> 🎮</p>
+
+<p>
+This script was developed to make playing Roblox games more convenient and faster.
+The internal system can automate many tasks, such as:
+</p>
+
+<ul>
+<li>🧱 (Auto Item Farming)</li>
+<li>📈 (Auto Level Farming)</li>
+<li>⚙️ (Auto Quest System)</li>
+</ul>
+
+<p>
+The script is designed to support multiple executor types,
+making it compatible with the popular Roblox Script Runner.
+</p>
+
+<p>
+📋 Users can copy and use the script immediately
+without modifying any code.
+</p>
+
+<p>
+🚀 Ideal for players who want to
+farm faster, save time, and improve their Roblox gameplay efficiency.
+</p>
+
+</div>
+
+<div class="section">
+
+<h3>How to use</h3>
+
+<div class="howto">
+
+<div class="step">
+<b>📌 How to Use</b>
+</div>
+
+<div class="step">
+<b>1️⃣ 🎮 Launch your desired Roblox game.</b>
+<p>Open the Roblox game you want to use the script in.</p>
+</div>
+
+<div class="step">
+<b>2️⃣ 💻 Open the Executor program.</b>
+<p>Launch your Roblox Executor.</p>
+</div>
+
+<div class="step">
+<b>3️⃣ 📋 Click the Copy Script button below.</b>
+<p>Click the Copy Script button below.</p>
+</div>
+
+<div class="step">
+<b>4️⃣ 📥 Paste the script into the Executor.</b>
+<p>Paste the script into the Executor.</p>
+</div>
+
+<div class="step">
+<b>5️⃣ ▶️ Press Execute to start.</b>
+<p>Press Execute to start running the script.</p>
+</div>
+
+</div>
+
+</div>
+
+<textarea id="script" readonly></textarea>
+
+<br>
+
+<button class="copy-btn" onclick="copyScript()">
+📜 Copy Script
+</button>
+
+<br>
+
+<a class="back" href="index.html">← Return to Scripts page</a>
+
+</div>
+
+</div>
+
+<div id="toast">Script Copied</div>
+
+
+<script>
+
+// 🔒 ระบบกันเข้าตรง
+const params = new URLSearchParams(window.location.search);
+
+let token = params.get("t");
+let tab = params.get("tab");
+
+let savedToken = sessionStorage.getItem("access_token");
+let savedTime = parseInt(sessionStorage.getItem("access_time"));
+let savedTab = sessionStorage.getItem("tab_id");
+
+let now = Date.now();
+
+if(
+  !token ||
+  token !== savedToken ||
+  tab !== savedTab ||
+  !savedTime ||
+  (now - savedTime > 30000)
+){
+  sessionStorage.clear();
+  window.location.href = "index.html";
+}
+
+let scripts=[];
+
+fetch("database.json")
+.then(res=>res.json())
+.then(data=>{
+
+scripts=data.scripts;
+
+let id=parseInt(params.get("key")) || 1;
+
+let scriptData=scripts.find(s=>s.id==id);
+
+if(!scriptData){
+
+scriptData=scripts[0];
+
+}
+
+document.getElementById("script").value=
+scriptData.script;
+
+document.getElementById("title").innerText=
+scriptData.title;
+
+});
+
+
+  
+function copyScript(){
+
+navigator.clipboard.writeText(
+document.getElementById("script").value
+)
+
+let toast=document.getElementById("toast")
+
+toast.classList.add("show")
+
+setTimeout(()=>{
+toast.classList.remove("show")
+},2000)
+
+}
+
+
+
+const canvas=document.getElementById("snow")
+const ctx=canvas.getContext("2d")
+
+function resize(){
+
+canvas.width=window.innerWidth
+canvas.height=window.innerHeight
+
+}
+
+resize()
+
+window.addEventListener("resize",resize)
+
+let snow=[]
+
+for(let i=0;i<160;i++){
+
+snow.push({
+
+x:Math.random()*canvas.width,
+y:Math.random()*canvas.height,
+r:Math.random()*3+1,
+speed:Math.random()*1+0.7
+
+})
+
+}
+
+function draw(){
+
+ctx.clearRect(0,0,canvas.width,canvas.height)
+
+ctx.fillStyle="white"
+
+snow.forEach(f=>{
+
+ctx.beginPath()
+
+ctx.arc(f.x,f.y,f.r,0,Math.PI*2)
+
+ctx.fill()
+
+f.y+=f.speed
+
+if(f.y>canvas.height){
+
+f.y=0
+f.x=Math.random()*canvas.width
+
+}
+
+})
+
+requestAnimationFrame(draw)
+
+}
+
+draw()
+
+</script>
+
+<script src="ads.js"></script>
+
+<script src="antiadblock.js"></script>
+
+<script>
+
+window.onload=function(){
+
+window.open(
+"https://airconditionstrodefist.com/xexd2an06?key=8b286cd67ff1ac791222566d220cda9d",
+"_blank"
+)
+
+}
+
+</script>
+
+<script src="antiadblock.js"></script>
+
+</body>
+</html>

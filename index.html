@@ -1,0 +1,600 @@
+<!DOCTYPE html>
+<html lang="th">
+
+<link rel="stylesheet" href="popup.css">
+   
+<head>
+
+<meta charset="UTF-8">
+<script src="https://unpkg.com/lucide@latest"></script>
+<meta name="viewport" content="width=device-width,initial-scale=1.0">
+
+<title>Zynrax Hub</title>
+
+<style>
+
+:root{
+--main:#f4b942;
+--dark:#e09a2d;
+--light:#ffd166;
+--active:#b86b1b;
+--bg:#fff6e5;
+}
+
+body{
+margin:0;
+font-family:Arial;
+background:var(--bg);
+}
+
+
+
+.navbar{
+position:sticky;
+top:0;
+background:var(--main);
+color:white;
+display:flex;
+justify-content:space-between;
+align-items:center;
+padding:12px 30px;
+z-index:1000;
+box-shadow:0 4px 12px rgba(0,0,0,0.15);
+}
+
+.logo{
+display:flex;
+align-items:center;
+gap:10px;
+}
+
+.logo img{
+width:34px;
+height:34px;
+border-radius:50%;
+object-fit:cover;
+}
+
+.nav-links a{
+color:white;
+text-decoration:none;
+margin-left:18px;
+font-weight:bold;
+}
+
+/* HERO */
+
+.hero{
+position:relative;
+background:linear-gradient(var(--dark),var(--light));
+color:white;
+text-align:center;
+padding:90px 20px;
+overflow:hidden;
+}
+
+.hero h1{
+margin:0;
+font-size:40px;
+position:relative;
+z-index:2;
+}
+
+.hero p{
+position:relative;
+z-index:2;
+}
+
+#snowHero{
+position:absolute;
+top:0;
+left:0;
+width:100%;
+height:100%;
+}
+
+/* CONTAINER */
+
+.container{
+max-width:1200px;
+margin:auto;
+padding:30px;
+}
+
+/* SEARCH */
+
+.search{
+text-align:center;
+margin-bottom:25px;
+}
+
+.search input{
+width:300px;
+padding:10px;
+border-radius:6px;
+border:1px solid #ccc;
+}
+
+/* CATEGORY */
+
+.categories{
+text-align:center;
+margin-bottom:25px;
+}
+
+.categories button{
+margin:5px;
+padding:8px 14px;
+border:none;
+background:var(--main);
+color:white;
+border-radius:6px;
+cursor:pointer;
+}
+
+/* GRID */
+
+.grid{
+display:grid;
+grid-template-columns:repeat(4,1fr);
+gap:25px;
+}
+
+/* TRENDING CENTER */
+
+#trending{
+display:grid;
+grid-template-columns:repeat(auto-fit,minmax(250px,1fr));
+max-width:900px;
+margin:auto;
+gap:25px;
+}
+
+/* CARD */
+
+.card{
+background:white;
+border-radius:12px;
+border:2px solid var(--light);
+box-shadow:0 8px 20px rgba(0,0,0,0.1);
+overflow:hidden;
+transition:0.25s ease;
+}
+
+.card:hover{
+transform:translateY(-6px);
+box-shadow:0 12px 28px rgba(224,154,45,0.35);
+}
+
+.card img{
+width:100%;
+height:150px;
+object-fit:cover;
+}
+
+.card h3{
+margin:15px;
+}
+
+.status{
+margin-left:15px;
+color:green;
+font-size:13px;
+}
+
+/* ปุ่ม Get Script */
+
+.card button{
+display:inline-block;
+margin:15px;
+background:var(--main);
+color:white;
+padding:10px 16px;
+border-radius:6px;
+border:none;
+cursor:pointer;
+}
+
+/* PAGINATION */
+
+.pagination{
+text-align:center;
+margin-top:40px;
+}
+
+.pagination button{
+margin:4px;
+padding:8px 12px;
+border:none;
+background:var(--main);
+color:white;
+border-radius:5px;
+cursor:pointer;
+}
+
+.pagination button.active{
+background:var(--active);
+}
+
+/* TITLES */
+
+.section-title{
+font-size:22px;
+margin-bottom:20px;
+text-align:center;
+}
+
+/* FOOTER */
+
+footer{
+margin-top:60px;
+background:#222;
+color:#ddd;
+text-align:center;
+padding:30px;
+}
+
+/* RESPONSIVE */
+
+@media(max-width:1000px){
+.grid{
+grid-template-columns:repeat(3,1fr);
+}
+}
+
+@media(max-width:700px){
+.grid{
+grid-template-columns:repeat(2,1fr);
+}
+.hero h1{
+font-size:28px;
+}
+}
+
+.categories button:hover{
+background:var(--dark);
+}
+
+.card button:hover{
+background:var(--dark);
+}
+
+.pagination button:hover{
+background:var(--dark);
+}
+   
+</style>
+
+</head>
+
+<body>
+
+<div class="navbar">
+
+<div class="logo">
+<img src="mascot.png">
+<b>Zynrax Hub</b>
+</div>
+
+<div class="nav-links">
+<a href="index.html">Home</a>
+<a href="download.html">Download Delta</a>
+<a href="https://www.youtube.com/@zynraxxx" target="_blank">YouTube</a>
+</div>
+
+</div>
+
+<div class="hero">
+
+<canvas id="snowHero"></canvas>
+
+<h1>Zynrax Hub Library</h1>
+<p>Free Roblox Scripts</p>
+
+</div>
+
+<div class="container">
+
+<div class="section-title">🔥 𝗧𝗿𝗲𝗻𝗱𝗶𝗻𝗴 𝗦𝗰𝗿𝗶𝗽𝘁𝘀</div>
+
+<div id="trending"></div>
+
+<br>
+
+<div class="search">
+<input id="search" placeholder="🔎 Search Script">
+</div>
+
+<div class="categories">
+<button onclick="filterCategory('all')">All</button>
+<button onclick="filterCategory('blox')">Blox Fruits</button>
+<button onclick="filterCategory('anime')">Anime</button>
+<button onclick="filterCategory('sim')">Simulator</button>
+</div>
+
+<div id="scripts" class="grid"></div>
+
+<div id="pagination" class="pagination"></div>
+
+</div>
+
+<footer>
+
+Zynrax Hub<br>
+Free Roblox Script Library<br><br>
+© 2026 Zynrax Hub
+
+</footer>
+
+<script>
+
+/* DEFAULT THUMB */
+
+const defaultThumb="https://img.youtube.com/vi/ueHLbrNRBlI/maxresdefault.jpg"
+
+/* DATABASE */
+   
+let scripts=[]
+let filtered=[]
+let trendingData=[]
+
+fetch("database.json")
+.then(res=>res.json())
+.then(data=>{
+
+scripts=data.scripts.reverse()
+
+/* เอาเฉพาะตัวที่ trending=true */
+trendingData = scripts.filter(s => s.trending === true)
+
+filtered=[...scripts]
+
+renderTrending()
+render()
+
+})
+
+/* TRENDING */
+
+function renderTrending(){
+
+let trending=document.getElementById("trending")
+
+trending.innerHTML=""
+
+trendingData
+.slice(0,3)
+.forEach(s=>{
+
+let thumb=s.thumb || defaultThumb
+
+trending.innerHTML+=`
+
+<div class="card">
+
+<img src="${thumb}">
+
+<h3>${s.title}</h3>
+
+<div class="status">🟢 Working</div>
+
+<button onclick="openPage(${s.id})">
+📜 Get Script
+</button>
+
+</div>
+
+`
+
+})
+
+}
+
+/* PAGINATION */
+
+let perPage=8
+let currentPage=1
+
+function render(){
+
+let start=(currentPage-1)*perPage
+let end=start+perPage
+
+let pageData=filtered.slice(start,end)
+
+let grid=document.getElementById("scripts")
+grid.innerHTML=""
+
+pageData.forEach(s=>{
+
+let thumb=s.thumb || defaultThumb
+
+grid.innerHTML+=`
+
+<div class="card">
+
+<img src="${thumb}">
+
+<h3>${s.title}</h3>
+
+<div class="status">🟢 𝙒𝙤𝙧𝙠𝙞𝙣𝙜</div>
+
+<button onclick="openPage(${s.id})">
+📜 Get Script
+</button>
+
+</div>
+
+`
+
+})
+
+renderPagination()
+
+}
+
+function renderPagination(){
+
+let pages=Math.ceil(filtered.length/perPage)
+
+let html=""
+
+html+=`<button onclick="goPage(1)">«</button>`
+html+=`<button onclick="goPage(${currentPage-1})">‹</button>`
+
+let start=Math.max(1,currentPage-3)
+let end=Math.min(pages,currentPage+3)
+
+for(let i=start;i<=end;i++){
+
+html+=`<button class="${i==currentPage?'active':''}" onclick="goPage(${i})">${i}</button>`
+
+}
+
+html+=`<button onclick="goPage(${currentPage+1})">›</button>`
+html+=`<button onclick="goPage(${pages})">»</button>`
+
+document.getElementById("pagination").innerHTML=html
+
+}
+
+function goPage(p){
+
+let pages=Math.ceil(filtered.length/perPage)
+
+if(p<1)p=1
+if(p>pages)p=pages
+
+currentPage=p
+render()
+
+}
+
+document.getElementById("search").addEventListener("input",e=>{
+
+let t=e.target.value.toLowerCase()
+
+filtered=scripts.filter(s=>s.title.toLowerCase().includes(t))
+
+currentPage=1
+
+render()
+
+})
+
+function filterCategory(cat){
+
+if(cat=="all"){
+
+filtered=[...scripts]
+
+}else{
+
+filtered=scripts.filter(
+s=>s.category==cat
+)
+
+}
+
+currentPage=1
+render()
+
+}
+
+/* HERO SNOW */
+
+const canvas=document.getElementById("snowHero")
+const ctx=canvas.getContext("2d")
+
+function resize(){
+canvas.width=canvas.offsetWidth
+canvas.height=canvas.offsetHeight
+}
+
+resize()
+window.addEventListener("resize",resize)
+
+let snow=[]
+
+for(let i=0;i<120;i++){
+
+snow.push({
+x:Math.random()*canvas.width,
+y:Math.random()*canvas.height,
+r:Math.random()*3+1,
+speed:Math.random()*1+0.5
+})
+
+}
+
+function draw(){
+
+ctx.clearRect(0,0,canvas.width,canvas.height)
+
+ctx.fillStyle="white"
+
+snow.forEach(f=>{
+
+ctx.beginPath()
+ctx.arc(f.x,f.y,f.r,0,Math.PI*2)
+ctx.fill()
+
+f.y+=f.speed
+
+if(f.y>canvas.height){
+f.y=0
+f.x=Math.random()*canvas.width
+}
+
+})
+
+requestAnimationFrame(draw)
+
+}
+
+draw()
+
+</script>
+
+<script src="ads.js"></script>
+<script src="antiadblock.js"></script>
+<script src="redirect.js"></script>
+
+<script src="popup.js" defer></script>
+
+<script>
+document.addEventListener("contextmenu", e => e.preventDefault());
+document.onkeydown = function(e) {
+  if (e.key === "F12") return false;
+};
+</script>
+
+<script>
+function openPage(key){
+
+  const token = Math.random().toString(36).substring(2);
+  const tabId = Math.random().toString(36).substring(2);
+  const time = Date.now();
+
+  sessionStorage.setItem("access_token", token);
+  sessionStorage.setItem("access_time", time);
+  sessionStorage.setItem("tab_id", tabId);
+
+  window.location.href = "script1.html?key=" + key + "&t=" + token + "&tab=" + tabId;
+}
+</script>
+
+<script>
+window.addEventListener("pageshow", function(event) {
+  if (event.persisted || window.performance.navigation.type === 2) {
+    // ล้าง session เก่า
+    sessionStorage.clear();
+
+    // รีโหลดหน้า เพื่อบังคับ popup / เงื่อนไขใหม่
+    location.reload();
+  }
+});
+</script>
+   
+</body>
+</html>

@@ -1,0 +1,359 @@
+<!DOCTYPE html>
+<html lang="th">
+<head>
+
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+
+<title>Download Delta Executor</title>
+
+<style>
+
+:root{
+--main:#f4b942;
+--dark:#e09a2d;
+--light:#ffd166;
+--active:#b86b1b;
+--bg:#fff6e5;
+}
+
+body{
+margin:0;
+font-family:Arial;
+background:var(--bg);
+}
+
+
+
+.navbar{
+background:var(--main);
+color:white;
+display:flex;
+justify-content:space-between;
+align-items:center;
+padding:12px 30px;
+box-shadow:0 4px 12px rgba(0,0,0,0.15);
+}
+
+.nav-links a{
+color:white;
+text-decoration:none;
+margin-left:20px;
+font-weight:bold;
+}
+
+
+
+.hero{
+position:relative;
+background:linear-gradient(var(--dark),var(--light));
+color:white;
+text-align:center;
+padding:90px 20px;
+overflow:hidden;
+}
+
+.hero h1{
+font-size:36px;
+margin:0;
+}
+
+.hero p{
+margin-top:10px;
+font-size:18px;
+}
+
+
+
+#snowHero{
+position:absolute;
+top:0;
+left:0;
+width:100%;
+height:100%;
+pointer-events:none;
+}
+
+
+
+.container{
+max-width:900px;
+margin:auto;
+padding:30px;
+}
+
+
+
+.card{
+background:white;
+border-radius:12px;
+border:2px solid var(--light);
+box-shadow:0 10px 25px rgba(0,0,0,0.1);
+padding:35px;
+text-align:center;
+}
+
+.card:hover{
+box-shadow:0 12px 28px rgba(224,154,45,0.35);
+transform:translateY(-4px);
+transition:0.25s ease;
+}
+
+
+.download-btn{
+
+display:inline-block;
+margin-top:25px;
+background:var(--main);
+color:white;
+padding:16px 28px;
+font-size:18px;
+border-radius:10px;
+text-decoration:none;
+font-weight:bold;
+transition:0.25s ease;
+box-shadow:0 4px 12px rgba(224,154,45,0.25);
+
+}
+
+.download-btn:hover{
+
+background:var(--dark);
+transform:scale(1.05);
+box-shadow:0 8px 20px rgba(224,154,45,0.45);
+
+}
+
+
+
+.back-btn{
+
+display:inline-block;
+margin-top:15px;
+color:var(--main);
+text-decoration:none;
+font-weight:bold;
+
+}
+
+
+
+.info{
+
+margin-top:20px;
+line-height:1.8;
+color:#444;
+
+}
+
+
+
+@media(max-width:700px){
+
+.hero h1{
+font-size:26px;
+}
+
+.navbar{
+flex-direction:column;
+gap:10px;
+}
+
+}
+
+</style>
+
+</head>
+
+<body>
+
+
+
+<div class="navbar">
+
+<div><b>Zynrax Hub</b></div>
+
+<div class="nav-links">
+<a href="index.html">Home</a>
+<a href="download.html">Download</a>
+<a href="https://www.youtube.com/@zynraxxx" target="_blank">YouTube</a>
+</div>
+
+</div>
+
+
+
+<div class="hero">
+
+<canvas id="snowHero"></canvas>
+
+<h1>📥 Delta Executor Download</h1>
+
+<p>Roblox Script Executor for Roblox players.</p>
+
+</div>
+
+
+
+<div class="container">
+
+<div class="card">
+
+<h2>🚀 Delta Executor</h2>
+
+<div class="info">
+
+<p>
+Delta Executor is a very popular program for running Roblox scripts among Roblox players. It's easy to use, supports a wide variety of scripts, and can execute scripts quickly.
+</p>
+
+<p>
+⚡ Fast Script Execution  
+🔒 Safe & Stable  
+🎮 Designed for Roblox Players
+</p>
+
+<p>
+📱 <b>Supports multiple platforms.</b>
+</p>
+
+<p>
+📱 Android Mobile  
+🍎 iOS (Passed through some system runners.)  
+💻 Windows PC  
+</p>
+
+<p>
+This Executor can be used to run scripts such as Auto Farm, Auto Level, Auto Raid, and other scripts in Roblox.
+</p>
+
+<p>
+Before downloading, you will be taken through an advertisement page to support the website.
+</p>
+
+</div>
+
+
+
+<a class="download-btn"
+href="#"
+onclick="startDownload()">
+
+⬇️ Download Delta Executor
+
+</a>
+
+<br>
+
+<a class="back-btn" href="index.html">
+
+⬅ Back to Home
+
+</a>
+
+</div>
+
+</div>
+
+
+
+<script>
+
+
+
+const canvas=document.getElementById("snowHero")
+const ctx=canvas.getContext("2d")
+
+function resize(){
+canvas.width=canvas.offsetWidth
+canvas.height=canvas.offsetHeight
+}
+
+resize()
+window.addEventListener("resize",resize)
+
+let snow=[]
+
+for(let i=0;i<120;i++){
+
+snow.push({
+x:Math.random()*canvas.width,
+y:Math.random()*canvas.height,
+r:Math.random()*3+1,
+speed:Math.random()*1+0.5
+})
+
+}
+
+function draw(){
+
+ctx.clearRect(0,0,canvas.width,canvas.height)
+
+ctx.fillStyle="white"
+
+snow.forEach(f=>{
+
+ctx.beginPath()
+ctx.arc(f.x,f.y,f.r,0,Math.PI*2)
+ctx.fill()
+
+f.y+=f.speed
+
+if(f.y>canvas.height){
+f.y=0
+f.x=Math.random()*canvas.width
+}
+
+})
+
+requestAnimationFrame(draw)
+
+}
+
+draw()
+
+</script>
+
+
+
+<script>
+
+
+let clicked = false;
+
+function startDownload(){
+
+if(clicked) return;
+clicked = true;
+
+
+let smartlink1 = "https://airconditionstrodefist.com/gtxj7z09s?key=1a543aabeb724beb73c4d19b77466165";
+
+
+let smartlink2 = "https://airconditionstrodefist.com/zamjdwmm?key=4632b457606c55aeef029a52d64159f6";
+
+
+let realDownload = "https://delta.filenetwork.vip/file/Delta-2.713.911.apk";
+
+
+window.open(smartlink1, "_blank");
+
+
+setTimeout(()=>{
+window.open(smartlink2, "_blank");
+}, 300);
+
+
+setTimeout(()=>{
+window.location.href = realDownload;
+}, 3000);
+
+}
+
+</script>
+
+
+<script src="https://airconditionstrodefist.com/8b/f9/c2/8bf9c2a00d1d723faf2111b54b17a1bd.js"></script>
+
+</body>
+</html>
