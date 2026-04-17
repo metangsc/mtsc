@@ -6,7 +6,7 @@ padding:30px;
 overflow-x:hidden;
 margin:0;
 
-/* ⭐ สีแดงพื้นหลัง panel */
+/* ⭐ สีแดงพื้นหลัง (แค่จุดนี้ที่เพิ่มตอนนั้น) */
 
 background:linear-gradient(
 180deg,
@@ -17,19 +17,7 @@ background:linear-gradient(
 
 }
 
-/* snow canvas */
-
-#snowPanel{
-position:fixed;
-top:0;
-left:0;
-width:100%;
-height:100%;
-z-index:-1;
-pointer-events:none;
-}
-
-/* panel อยู่หน้า canvas */
+/* panel อยู่ด้านหน้า */
 
 .login,
 .panel{
@@ -111,11 +99,7 @@ top:20px;
 
 height:fit-content;
 
-background:linear-gradient(
-145deg,
-#ffffff,
-#f7f7f7
-);
+background:#ffffff;
 
 padding:20px;
 
@@ -131,19 +115,14 @@ box-shadow:0 4px 14px rgba(0,0,0,0.06);
 
 flex:1;
 
-background:linear-gradient(
-145deg,
-#ffffff,
-#f3f3f3
-);
+background:#ffffff;
 
 padding:22px;
 
 border-radius:18px;
 
 box-shadow:
-0 6px 18px rgba(0,0,0,0.06),
-inset 0 1px 0 rgba(255,255,255,0.6);
+0 6px 18px rgba(0,0,0,0.06);
 
 }
 
@@ -188,8 +167,6 @@ border-radius:8px;
 
 }
 
-/* trending */
-
 .thumbBox{
 position:relative;
 }
@@ -215,8 +192,6 @@ font-weight:bold;
 
 }
 
-/* filter */
-
 #categoryFilter button.active{
 
 background:#333;
@@ -230,12 +205,7 @@ border:none;
 
 height:1px;
 
-background:linear-gradient(
-to right,
-transparent,
-#ddd,
-transparent
-);
+background:#ddd;
 
 margin:14px 0 18px;
 
