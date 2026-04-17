@@ -12,10 +12,29 @@
 body{
 font-family:Arial;
 
-/* พื้นหลังใหม่ดูแพงกว่า */
-background:#f3efe6;
+/* พื้นหลังแดงแบบ zip2 */
+background:linear-gradient(#990000,#ff4040);
 
 padding:30px;
+overflow-x:hidden;
+}
+
+/* canvas หิมะ */
+#snowPanel{
+position:fixed;
+top:0;
+left:0;
+width:100%;
+height:100%;
+z-index:0;
+pointer-events:none;
+}
+
+/* ดันเนื้อหาให้อยู่ด้านหน้า */
+.login,
+.panel{
+position:relative;
+z-index:1;
 }
 
 .login{
@@ -225,6 +244,8 @@ margin-bottom:12px;
 </head>
 
 <body>
+
+<canvas id="snowPanel"></canvas>
 
 <!-- LOGIN -->
 
@@ -1308,10 +1329,80 @@ color:white;
 padding:10px 16px;
 border-radius:8px;
 display:none;
-z-index:999;
+z-index:2000;
 ">
 Saved
 </div>
+
+<script>
+
+const canvasPanel=document.getElementById("snowPanel");
+const ctxPanel=canvasPanel.getContext("2d");
+
+function resizePanel(){
+canvasPanel.width=window.innerWidth;
+canvasPanel.height=window.innerHeight;
+}
+
+resizePanel();
+window.addEventListener("resize",resizePanel);
+
+let snowPanel=[];
+
+for(let i=0;i<140;i++){
+
+snowPanel.push({
+x:Math.random()*canvasPanel.width,
+y:Math.random()*canvasPanel.height,
+r:Math.random()*3+1,
+speed:Math.random()*1+0.6
+});
+
+}
+
+function drawPanel(){
+
+ctxPanel.clearRect(
+0,
+0,
+canvasPanel.width,
+canvasPanel.height
+);
+
+ctxPanel.fillStyle="white";
+
+snowPanel.forEach(f=>{
+
+ctxPanel.beginPath();
+
+ctxPanel.arc(
+f.x,
+f.y,
+f.r,
+0,
+Math.PI*2
+);
+
+ctxPanel.fill();
+
+f.y+=f.speed;
+
+if(f.y>canvasPanel.height){
+
+f.y=0;
+f.x=Math.random()*canvasPanel.width;
+
+}
+
+});
+
+requestAnimationFrame(drawPanel);
+
+}
+
+drawPanel();
+
+</script>
   
 </body>
 </html>
