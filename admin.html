@@ -1051,7 +1051,26 @@ document.getElementById("script").value.trim();
 
 showToast("✅ Script updated");
 
-cancelEdit();
+/* รีเซ็ตแบบไม่โชว์ Cancel */
+
+editingId = null;
+
+/* เคลียร์ฟอร์ม */
+
+document.getElementById("title").value="";
+document.getElementById("category").value="";
+document.getElementById("thumb").value="";
+document.getElementById("script").value="";
+
+document.getElementById("thumbPreview").style.display="none";
+
+/* คืนปุ่ม */
+
+document.getElementById("addBtn").innerText =
+"➕ Add Script";
+
+document.getElementById("cancelBtn").style.display =
+"none";
 
 render();
 
@@ -1602,15 +1621,18 @@ input.type = "text";
 /* เปลี่ยนเป็น eye-off */
 
 icon.innerHTML = `
-<path fill="#555"
-d="M12 5c-7 0-10 7-10 7s3 7 10 7 
-10-7 10-7-3-7-10-7zm0 
-12a5 5 0 110-10 5 5 0 010 10z"/>
-<line x1="3" y1="3" x2="21" y2="21"
+<path 
+d="M2 12s3-7 10-7 10 7 10 7-3 7-10 7-10-7-10-7"
+stroke="#555"
+stroke-width="2"
+fill="none"/>
+
+<line 
+x1="3" y1="3"
+x2="21" y2="21"
 stroke="#555"
 stroke-width="2"/>
 `;
-
 }else{
 
 input.type = "password";
@@ -1618,13 +1640,18 @@ input.type = "password";
 /* กลับเป็น eye */
 
 icon.innerHTML = `
-<path fill="#555"
-d="M12 5c-7 0-10 7-10 7s3 7 10 7 
-10-7 10-7-3-7-10-7zm0 
-12a5 5 0 110-10 5 5 0 010 10z"/>
-<circle cx="12" cy="12" r="2" fill="#555"/>
-`;
+<path 
+d="M2 12s3-7 10-7 10 7 10 7-3 7-10 7-10-7-10-7"
+stroke="#555"
+stroke-width="2"
+fill="none"/>
 
+<circle 
+cx="12"
+cy="12"
+r="2"
+fill="#555"/>
+`;
 }
 
 }
