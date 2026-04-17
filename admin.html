@@ -1608,7 +1608,7 @@ document.body.classList.add("dark");
 let icon =
 document.getElementById("darkIcon");
 
-/* ตั้งเป็น Sun ตอนโหลด */
+/* ใช้ SUN ตัวใหม่ */
 
 icon.innerHTML = `
 <circle cx="12" cy="12" r="4" fill="white"/>
@@ -1623,6 +1623,21 @@ icon.innerHTML = `
 <line x1="17.5" y1="6.5" x2="19.5" y2="4.5"/>
 <line x1="4.5" y1="19.5" x2="6.5" y2="17.5"/>
 </g>
+`;
+
+}else{
+
+/* ถ้า Light Mode → Moon */
+
+let icon =
+document.getElementById("darkIcon");
+
+icon.innerHTML = `
+<path 
+d="M21 12.5
+A8.5 8.5 0 1 1 11.5 3
+A7 7 0 0 0 21 12.5z"
+fill="white"/>
 `;
 
 }
