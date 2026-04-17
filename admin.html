@@ -321,10 +321,15 @@ background:none !important;
 
 }
 
-body.dark #eyeIcon path,
-body.dark #eyeIcon circle{
+body.dark #eyeIcon path{
 
 stroke:#ccc;
+fill:none;
+
+}
+
+body.dark #eyeIcon circle{
+
 fill:#ccc;
 
 }
@@ -1612,37 +1617,42 @@ document.getElementById("password");
 let icon =
 document.getElementById("eyeIcon");
 
-/* ถ้าเป็น password → show */
+/* ถ้าเป็น password → แสดงรหัส */
 
 if(input.type === "password"){
 
 input.type = "text";
 
-/* เปลี่ยนเป็น eye-off */
+/* eye-off (ตาขีด) */
 
 icon.innerHTML = `
+
 <path 
 d="M2 12s3-7 10-7 10 7 10 7-3 7-10 7-10-7-10-7"
-stroke="#555"
+stroke="#888"
 stroke-width="2"
 fill="none"/>
 
 <line 
 x1="3" y1="3"
 x2="21" y2="21"
-stroke="#555"
-stroke-width="2"/>
+stroke="#888"
+stroke-width="2"
+stroke-linecap="round"/>
+
 `;
+
 }else{
 
 input.type = "password";
 
-/* กลับเป็น eye */
+/* eye (ตาปกติ) */
 
 icon.innerHTML = `
+
 <path 
 d="M2 12s3-7 10-7 10 7 10 7-3 7-10 7-10-7-10-7"
-stroke="#555"
+stroke="#888"
 stroke-width="2"
 fill="none"/>
 
@@ -1650,8 +1660,10 @@ fill="none"/>
 cx="12"
 cy="12"
 r="2"
-fill="#555"/>
+fill="#888"/>
+
 `;
+
 }
 
 }
