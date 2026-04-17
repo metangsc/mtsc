@@ -217,7 +217,65 @@ margin-bottom:12px;
 
 }
 
+/* ===== DARK MODE (FIX REAL) ===== */
 
+body.dark{
+background:#111 !important;
+color:white;
+}
+
+/* กล่องหลัก */
+
+body.dark .formBox{
+background:linear-gradient(
+145deg,
+#1a1a1a,
+#111
+);
+}
+
+body.dark .listBox{
+background:linear-gradient(
+145deg,
+#1a1a1a,
+#111
+);
+}
+
+/* card */
+
+body.dark .card{
+background:#1a1a1a;
+color:white;
+}
+
+/* input */
+
+body.dark input,
+body.dark textarea,
+body.dark select{
+background:#111;
+color:white;
+border:1px solid #333;
+}
+
+/* code preview */
+
+body.dark pre{
+background:#000;
+color:#0f0;
+}
+
+/* เส้น divider */
+
+body.dark .sectionDivider{
+background:linear-gradient(
+to right,
+transparent,
+#444,
+transparent
+);
+}
 
 </style>
 
@@ -1072,46 +1130,6 @@ padding:20px;
 white-space:pre-wrap;
 }
 
-/* ===== DARK MODE ===== */
-
-.dark{
-background:#111;
-color:white;
-}
-
-.dark .formBox{
-background:linear-gradient(
-145deg,
-#1a1a1a,
-#111
-);
-}
-
-.dark .listBox{
-background:linear-gradient(
-145deg,
-#1a1a1a,
-#111
-);
-}
-
-.dark .card{
-background:#1a1a1a;
-color:white;
-}
-
-.dark input,
-.dark textarea,
-.dark select{
-background:#111;
-color:white;
-border:1px solid #333;
-}
-
-.dark pre{
-background:#000;
-color:#0f0;
-}
 
 </style>
 
