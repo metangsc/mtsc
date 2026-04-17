@@ -11,21 +11,27 @@
 
 body{
 font-family:Arial;
-background:#990000;
-margin:0;
+padding:30px;
 overflow-x:hidden;
-min-height:100vh;
+margin:0;
+
+/* ✅ เพิ่มพื้นหลังแดง */
+background:linear-gradient(
+180deg,
+#990000 0%,
+#d60000 50%,
+#ff4040 100%
+);
 }
 
-/* gradient อยู่หลังหิมะ */
-#snowPanel{
+/* ✅ bgRed ใช้งานจริง */
+#bgRed{
 position:fixed;
 top:0;
 left:0;
 width:100%;
 height:100%;
-z-index:0;
-pointer-events:none;
+z-index:-2;
 
 background:linear-gradient(
 180deg,
@@ -35,12 +41,25 @@ background:linear-gradient(
 );
 }
 
-/* สำคัญ — ให้ panel อยู่หน้า canvas */
+#snowPanel{
+position:fixed;
+top:0;
+left:0;
+width:100%;
+height:100%;
+z-index:-1;
+pointer-events:none;
+}
+
+/* panel อยู่หน้า canvas */
+
 .login,
 .panel{
 position:relative;
 z-index:1;
 }
+
+/* LOGIN */
 
 .login{
 max-width:400px;
@@ -49,20 +68,22 @@ text-align:center;
 padding-top:60px;
 }
 
-input, textarea, select{
+/* INPUT */
+
+input,
+textarea,
+select{
 width:100%;
 padding:10px;
-margin:8px 0;   /* เพิ่มระยะห่าง */
+margin:8px 0;
 border-radius:8px;
 border:1px solid #ccc;
 font-size:14px;
 transition:0.2s;
-
 box-sizing:border-box;
-  
 }
 
-/* ⭐ วางโค้ดนี้ต่อจากด้านบน */
+/* FOCUS */
 
 input:focus,
 textarea:focus,
@@ -72,11 +93,12 @@ outline:none;
 
 border-color:#d60000;
 
-/* glow เบา */
 box-shadow:
 0 0 0 3px rgba(214,0,0,0.2);
 
 }
+
+/* BUTTON */
 
 button{
 padding:10px 16px;
@@ -84,37 +106,23 @@ background:#d60000;
 border:none;
 border-radius:8px;
 cursor:pointer;
-margin-top:10px;  /* เพิ่มช่องว่าง */
+margin-top:10px;
 font-weight:600;
-}
-
-@keyframes fadeIn{
-from{
-opacity:0;
-transform:translateY(6px);
-}
-to{
-opacity:1;
-transform:translateY(0);
-}
-}
-
-#categoryFilter button.active{
-background:#333;
-color:white;
 }
 
 button:hover{
 opacity:0.85;
 }
 
-/* ===== Layout ซ้าย-ขวา ===== */
+/* PANEL */
 
 .panel{
 display:none;
 gap:26px;
 align-items:flex-start;
 }
+
+/* LEFT */
 
 .formBox{
 
@@ -127,24 +135,22 @@ top:20px;
 
 height:fit-content;
 
-/* เพิ่มพื้นหลัง */
 background:linear-gradient(
 145deg,
 #ffffff,
 #f7f7f7
 );
 
-/* ระยะขอบ */
 padding:20px;
 
-/* มุมโค้ง */
 border-radius:16px;
 
-/* เงา */
 box-shadow:0 4px 14px rgba(0,0,0,0.06);
 
 }
-  
+
+/* RIGHT */
+
 .listBox{
 
 flex:1;
@@ -155,7 +161,7 @@ background:linear-gradient(
 #f3f3f3
 );
 
-padding:22px;   /* จาก 20 → 26 */
+padding:22px;
 
 border-radius:18px;
 
@@ -164,58 +170,82 @@ box-shadow:
 inset 0 1px 0 rgba(255,255,255,0.6);
 
 }
-  
-/* ===== Card แบบมืออาชีพ ===== */
+
+/* CARD */
 
 .card{
+
 display:flex;
 gap:14px;
 align-items:flex-start;
+
 background:white;
+
 padding:14px;
+
 border-radius:14px;
+
 margin-top:14px;
 
 box-shadow:0 4px 14px rgba(0,0,0,0.06);
 
 transition:0.2s;
+
 }
 
 .card:hover{
-transform:translateY(-3px);
 
-box-shadow:0 10px 22px rgba(0,0,0,0.12);
+transform:translateY(-2px);
+
+box-shadow:0 6px 16px rgba(0,0,0,0.08);
+
 }
 
 .card img{
+
 width:100px;
 height:70px;
+
 object-fit:cover;
+
 border-radius:8px;
+
 }
 
-.card:hover{
-transform:translateY(-2px);
-box-shadow:0 6px 16px rgba(0,0,0,0.08);
-transition:0.15s;
-}
-
-/* ⭐ Trending Badge */
+/* TRENDING */
 
 .thumbBox{
 position:relative;
 }
 
 .trendingBadge{
+
 position:absolute;
+
 top:6px;
 right:6px;
+
 background:#ff4040;
+
 color:white;
+
 font-size:12px;
+
 padding:2px 6px;
+
 border-radius:6px;
+
 font-weight:bold;
+
+}
+
+/* FILTER */
+
+#categoryFilter button.active{
+
+background:#333;
+color:white;
+
 }
 
 .sectionDivider{
@@ -243,1172 +273,6 @@ margin-bottom:12px;
 
 }
 
-
-
 </style>
 
 </head>
-
-<body>
-
-<canvas id="snowPanel"></canvas>
-
-<!-- LOGIN -->
-
-<div class="login" id="loginBox">
-  
-<div id="loadingText" style="display:none;margin-top:10px;color:#555;">
-⏳ Loading database...
-</div>
-
-<h2>Zynrax Login</h2>
-
-<form onsubmit="login(); return false;">
-
-<div style="position:relative;">
-
-<input 
-id="password" 
-type="password" 
-placeholder="Enter Password">
-
-
-
-</div>
-
-<br>
-
-<button type="submit">
-Login
-</button>
-
-</form>
-
-</div>
-
-<!-- PANEL -->
-
-<div class="panel" id="panelBox">
-
-<!-- LEFT FORM -->
-
-<div class="formBox">
-
-<h2>Script Manager</h2>
-
-<input id="title" placeholder="Title">
-
-<select id="category">
-
-<option value="">-- Select Category --</option>
-
-<option value="blox">blox</option>
-<option value="anime">anime</option>
-<option value="sim">sim</option>
-
-</select>
-
-<input 
-id="thumb" 
-placeholder="Paste YouTube URL or Image Thumbnail URL"
-oninput="previewThumb()">
-
-<img 
-id="thumbPreview"
-style="width:180px;border-radius:10px;display:none;margin-top:6px;">
-
-<textarea id="script" placeholder="Script Code"></textarea>
-
-<button onclick="addScript()">
-➕ Add Script
-</button>
-
-<input 
-type="file" 
-id="importFile"
-accept=".json"
-style="display:none"
-onchange="importDatabase(event)">
-
-<button onclick="document.getElementById('importFile').click()">
-📂 Import Database
-</button>
-
-<button onclick="download()">
-💾 Export Database
-</button>
-
-</div>
-
-<!-- RIGHT LIST -->
-
-<div class="listBox">
-
-<h3 id="scriptCount">
-All Scripts (0)
-</h3>
-<hr class="sectionDivider">
-  
-<input 
-id="searchInput" 
-placeholder="🔎 Search Script"
-oninput="searchScript()">
-
-<br>
-
-<div id="categoryFilter">
-
-<button onclick="setFilter('all')">
-All
-</button>
-
-<button onclick="setFilter('blox')">
-blox
-</button>
-
-<button onclick="setFilter('anime')">
-anime
-</button>
-
-<button onclick="setFilter('sim')">
-sim
-</button>
-
-</div>
-
-<div id="list"></div>
-  
-<div id="pagination"
-style="margin-top:15px;"></div>
-
-</div>
-
-</div>
-  
-<script>
-
-let data = { scripts: [], trending: [] };
-let currentFilter = "all";
-let dbLoaded = false;
-  
-let currentPage = 1;
-let perPage = 12;
-
-fetch("database.json")
-.then(res => res.json())
-.then(db => {
-
-data = db;
-
-console.log("Database loaded:", data);
-
-dbLoaded = true;
-
-})
-.catch(err => {
-
-console.error("โหลด database.json ไม่สำเร็จ", err);
-
-dbLoaded = true; // ✅ เพิ่มบรรทัดนี้
-
-});
-</script>
-
-<script>
-  
-/* PASSWORD */
-
-const ADMIN_PASSWORD="551901";
-
-
-
-function login(){
-
-let pass=document
-.getElementById("password")
-.value
-.trim();
-
-if(pass===ADMIN_PASSWORD){
-
-if(!dbLoaded){
-
-document.getElementById("loadingText").style.display="block";
-
-return;
-
-}
-
-console.log("Login button pressed");
-  
-document.getElementById("loginBox").style.display="none";
-
-document.getElementById("panelBox").style.display="flex";
-
-loadScripts();
-
-}else{
-
-alert("Wrong Password");
-
-}
-
-}
-
-
-/* LOAD DATA */
-
-function loadScripts(){
-
-console.log("loadScripts called");
-
-/* ถ้า database.js ไม่โหลด */
-
-
-
-console.log("DATA =", data);
-
-/* กัน scripts/trending หาย */
-
-if(!data.scripts){
-data.scripts=[];
-}
-
-if(!data.trending){
-data.trending=[];
-}
-
-render();
-
-}
-/* RENDER */
-
-function render(){
-
-let list = document.getElementById("list");
-
-list.innerHTML="";
-
-/* filter */
-
-let filtered = [...data.scripts]
-
-.filter(s => {
-
-if(currentFilter === "all"){
-return true;
-}
-
-return s.category === currentFilter;
-
-})
-
-.sort((a,b)=>b.id-a.id);
-
-/* pagination */
-
-let start = (currentPage-1) * perPage;
-let end = start + perPage;
-
-let pageData =
-filtered.slice(start,end);
-
-/* update count */
-
-document.getElementById("scriptCount").innerText =
-"All Scripts (" + filtered.length + ")";
-
-/* render page */
-
-/* render page (FAST VERSION) */
-
-let html = "";
-
-pageData.forEach((s)=>{
-
-html += createCard(s);
-
-});
-
-list.innerHTML = html;
-
-/* ถ้าไม่มี */
-
-if(list.innerHTML===""){
-
-list.innerHTML=`
-
-<div style="
-text-align:center;
-padding:40px;
-color:#777;
-">
-
-📂 ยังไม่มี Script
-
-</div>
-
-`;
-
-}
-
-/* render pagination */
-
-renderPagination(filtered.length);
-
-}
-
-/* ⭐ เพิ่มตรงนี้ */
-
-function renderPagination(total){
-
-let pageBox =
-document.getElementById("pagination");
-
-if(!pageBox) return;
-
-pageBox.innerHTML="";
-
-let totalPages =
-Math.ceil(total / perPage);
-
-for(let i=1;i<=totalPages;i++){
-
-let btn=document.createElement("button");
-
-btn.innerText=i;
-
-if(i===currentPage){
-btn.style.background="#333";
-btn.style.color="white";
-}
-
-btn.onclick=()=>{
-
-currentPage=i;
-
-render();
-
-window.scrollTo({
-top:0,
-behavior:"smooth"
-});
-
-};
-
-pageBox.appendChild(btn);
-
-}
-
-}
-  
-/* CREATE CARD */
-
-function createCard(s){
-
-return `
-
-<div class="card">
-
-<div class="thumbBox">
-
-<img src="${s.thumb || 'https://via.placeholder.com/120'}">
-
-${s.trending ? `
-<div class="trendingBadge">
-⭐ Trending
-</div>
-` : ""}
-
-</div>
-
-<div style="flex:1;">
-
-<b>
-${(s.title || "").substring(0,80)}
-</b>
-
-<br>
-
-<small>
-Category: ${s.category}
-</small>
-
-<pre style="
-max-height:70px;
-overflow:auto;
-background:#f5f5f5;
-padding:6px;
-border-radius:6px;
-">
-
-${escapeHTML(
-(s.script || "").substring(0,200)
-)}
-
-</pre>
-
-<div>
-
-<button onclick="editScript(${s.id})">
-✏️
-</button>
-
-<button onclick="deleteScript(${s.id})">
-❌
-</button>
-
-<button 
-onclick="toggleTrending(${s.id})"
-style="
-background:${s.trending ? '#ff4040' : '#d60000'};
-">
-⭐
-</button>
-
-<button onclick="previewScript(${s.id})">
-👁
-</button>
-
-<button onclick="copyScript(${s.id})">
-📋
-</button>
-
-</div>
-
-</div>
-
-</div>
-
-`;
-
-}
-/* SEARCH */
-
-function searchScript(){
-
-let keyword =
-document
-.getElementById("searchInput")
-.value
-.toLowerCase();
-
-currentPage = 1; // reset page ตอนค้นหา
-
-renderSearch(keyword);
-
-}
-
-function renderSearch(keyword){
-
-let list =
-document.getElementById("list");
-
-list.innerHTML="";
-
-let filtered = [...data.scripts]
-
-.filter(s => {
-
-/* Filter Category */
-
-if(currentFilter !== "all"){
-
-if(s.category !== currentFilter){
-return false;
-}
-
-}
-
-/* Filter Search */
-
-return (s.title || "")
-.toLowerCase()
-.includes(keyword);
-
-})
-
-.sort((a,b)=>b.id-a.id);
-
-
-/* pagination */
-
-let start =
-(currentPage-1) * perPage;
-
-let end =
-start + perPage;
-
-let pageData =
-filtered.slice(start,end);
-
-
-/* count */
-
-document.getElementById("scriptCount").innerText =
-"All Scripts (" + filtered.length + ")";
-
-
-pageData.forEach((s)=>{
-
-list.innerHTML += createCard(s);
-
-});
-
-
-if(list.innerHTML===""){
-
-list.innerHTML=`
-
-<div style="
-text-align:center;
-padding:40px;
-color:#777;
-">
-
-🔎 ไม่พบ Script ที่ค้นหา
-
-</div>
-
-`;
-
-}
-
-/* pagination */
-
-renderPagination(filtered.length);
-
-}
-
-function encodeBase64(text){
-
-try{
-
-return btoa(
-unescape(
-encodeURIComponent(text)
-)
-);
-
-}catch(e){
-
-console.warn("Encode error:", e);
-
-return "";
-
-}
-
-}
-
-function escapeHTML(text){
-
-return text
-.replace(/&/g,"&amp;")
-.replace(/</g,"&lt;")
-.replace(/>/g,"&gt;")
-.replace(/"/g,"&quot;")
-.replace(/'/g,"&#39;");
-
-}
-
-function decodeBase64(text){
-
-if(!text) return "";
-
-try{
-
-return decodeURIComponent(
-escape(
-atob(text)
-)
-);
-
-}catch(e){
-
-console.warn("Decode error:", e);
-
-return text;
-
-}
-
-}
-
-/* ADD SCRIPT */
-
-function addScript(){
-
-let thumbInput=document.getElementById("thumb").value;
-  
-let title=document.getElementById("title").value.trim();
-let category=document.getElementById("category").value.trim();
-
-if(title===""){
-alert("กรุณาใส่ Title");
-return;
-}
-
-if(category===""){
-alert("กรุณาเลือก Category");
-return;
-}
-
-/* YouTube → Thumbnail */
-
-if(
-thumbInput.includes("youtube.com") || 
-thumbInput.includes("youtu.be")
-){
-
-let videoId="";
-
-if(thumbInput.includes("watch?v=")){
-videoId=thumbInput.split("watch?v=")[1].split("&")[0];
-}
-
-if(thumbInput.includes("youtu.be/")){
-videoId=thumbInput.split("youtu.be/")[1].split("?")[0];
-}
-
-if(videoId){
-thumbInput=
-"https://img.youtube.com/vi/"
-+videoId+
-"/maxresdefault.jpg";
-}
-
-}
-
-let rawText =
-document
-.getElementById("script")
-.value
-.trim();
-
-if(rawText===""){
-
-alert("Script cannot be empty");
-return;
-
-}
-
-/* ✅ confirm ต้องอยู่ตรงนี้ */
-
-if(!confirm("Add this script?")){
-return;
-}
-  
-let scriptText = rawText;
-
-
-/* CREATE */
-
-let newScript={
-
-id:Date.now(),
-
-title:title,
-category:category,
-
-thumb:thumbInput,
-
-script:scriptText,
-
-trending:false
-
-};
-
-data.scripts.push(newScript);
-
-render();
-
-alert("Script added successfully!");showToast("Script added successfully!");
-/* CLEAR FORM */
-
-document.getElementById("title").value="";
-document.getElementById("category").value="";
-document.getElementById("thumb").value="";
-document.getElementById("script").value="";
-
-/* ✅ เคลียร์รูป preview */
-
-document.getElementById("thumbPreview").style.display="none";
-document.getElementById("thumbPreview").src="";
-}
-
-/* EDIT */
-
-function editScript(id){
-
-let index =
-data.scripts.findIndex(s=>s.id===id);
-
-if(index===-1){
-alert("Script not found");
-return;
-}
-
-let s=data.scripts[index];
-
-document.getElementById("title").value = s.title || "";
-document.getElementById("category").value = s.category || "blox";
-document.getElementById("thumb").value = s.thumb || "";
-document.getElementById("script").value = s.script || "";
-/* ✅ แสดงรูปตอน edit */
-
-previewThumb();
-
-data.scripts.splice(index,1);
-
-render();
-
-}
-/* DELETE */
-
-function deleteScript(id){
-
-if(!confirm("Delete this script permanently?")){
-return;
-}
-
-let index =
-data.scripts.findIndex(s=>s.id===id);
-
-if(index===-1){
-alert("Script not found");
-return;
-}
-
-data.scripts.splice(index,1);
-
-render();
-
-}
-/* TRENDING */
-
-function toggleTrending(id){
-
-let index =
-data.scripts.findIndex(s=>s.id===id);
-
-if(index===-1){
-alert("Script not found");
-return;
-}
-
-let script=data.scripts[index];
-
-let count=
-data.scripts
-.filter(s=>s.trending)
-.length;
-
-/* limit 3 */
-
-if(!script.trending){
-
-if(count>=3){
-
-showToast("⚠️ Trending ได้สูงสุด 3 ตัว");
-return;
-
-}
-
-}
-
-/* toggle */
-
-script.trending=!script.trending;
-
-/* แจ้งเตือน */
-
-if(script.trending){
-
-showToast("⭐ Set as Trending");
-
-}else{
-
-showToast("⭐ Removed from Trending");
-
-}
-
-render();
-
-}
-
-
-/* PREVIEW SCRIPT (FIXED) */
-
-function previewScript(id){
-
-let index =
-data.scripts.findIndex(s=>s.id===id);
-
-if(index===-1){
-alert("Script not found");
-return;
-}
-
-let s = data.scripts[index];
-
-if(!s.script){
-alert("ไม่มีข้อมูล script");
-return;
-}
-
-/* แปลงให้ปลอดภัย */
-
-let raw = s.script;
-
-let safeHTML =
-raw
-.replace(/&/g,"&amp;")
-.replace(/</g,"&lt;")
-.replace(/>/g,"&gt;");
-
-/* เปิดหน้าพรีวิว */
-
-let win = window.open("", "_blank");
-
-if(!win){
-alert("Popup ถูกบล็อก");
-return;
-}
-
-win.document.open();
-
-win.document.write(`
-
-<!DOCTYPE html>
-<html>
-
-<head>
-
-<title>Preview</title>
-
-<style>
-
-body{
-margin:0;
-background:#111;
-color:#0f0;
-font-family:monospace;
-padding:20px;
-white-space:pre-wrap;
-}
-
-</style>
-
-</head>
-
-<body>
-
-${safeHTML}
-
-</body>
-
-</html>
-
-`);
-
-win.document.close();
-
-}
-
-function copyScript(id){
-
-let index =
-data.scripts.findIndex(s=>s.id===id);
-
-if(index===-1){
-showToast("❌ Script not found");
-return;
-}
-
-let text =
-data.scripts[index].script;
-
-navigator.clipboard.writeText(text)
-.then(()=>{
-
-showToast("📋 Copied Script");
-
-})
-.catch(()=>{
-
-showToast("❌ Copy failed");
-
-});
-
-}
-
-function download(){
-
-/* บันทึกข้อมูลแบบตรง */
-
-let jsText =
-JSON.stringify(data,null,2);
-
-/* export เป็น JS */
-
-let blob=new Blob(
-[jsText],
-{type:"application/json"}
-);
-
-let a=document.createElement("a");
-
-a.href=URL.createObjectURL(blob);
-
-a.download="database_backup_"+Date.now()+".json";
-
-a.click();
-
-}
-
-function importDatabase(event){
-
-let file = event.target.files[0];
-
-if(!file){
-return;
-}
-
-if(!confirm("Import database? Current data will be replaced.")){
-return;
-}
-
-let reader = new FileReader();
-
-reader.onload = function(e){
-
-try{
-
-let importedData =
-JSON.parse(e.target.result);
-
-/* ตรวจว่าเป็น database จริง */
-
-if(!importedData.scripts || !Array.isArray(importedData.scripts)){
-alert("Invalid database file");
-return;
-}
-
-if(!importedData.trending){
-importedData.trending=[];
-}
-
-/* แทนที่ข้อมูล */
-
-data = importedData;
-
-/* บันทึกไฟล์ใหม่ */
-
-/* แสดงใหม่ */
-
-render();
-
-alert("Import successful!");
-
-}catch(err){
-
-alert("Import failed! File may be broken.");
-
-}
-
-};
-
-reader.readAsText(file);
-
-/* reset input */
-
-event.target.value="";
-
-}
-
-function previewThumb(){
-
-let thumbInput =
-document.getElementById("thumb").value;
-
-let preview =
-document.getElementById("thumbPreview");
-
-if(!thumbInput){
-
-preview.style.display="none";
-return;
-
-}
-
-/* YouTube → Thumbnail */
-
-if(
-thumbInput.includes("youtube.com") ||
-thumbInput.includes("youtu.be")
-){
-
-let videoId="";
-
-if(thumbInput.includes("watch?v=")){
-videoId=
-thumbInput
-.split("watch?v=")[1]
-.split("&")[0];
-}
-
-if(thumbInput.includes("youtu.be/")){
-videoId=
-thumbInput
-.split("youtu.be/")[1]
-.split("?")[0];
-}
-
-if(videoId){
-
-thumbInput =
-"https://img.youtube.com/vi/"
-+videoId+
-"/maxresdefault.jpg";
-
-}
-
-}
-
-/* แสดงรูป */
-
-preview.src = thumbInput;
-
-preview.style.display="block";
-
-}
-
-function setFilter(category){
-
-currentFilter = category;
-
-/* highlight button */
-
-document
-.querySelectorAll("#categoryFilter button")
-.forEach(btn=>btn.classList.remove("active"));
-
-document
-.querySelector(
-`#categoryFilter button[onclick="setFilter('${category}')"]`
-)
-.classList.add("active");
-
-/* reset search */
-
-document.getElementById("searchInput").value = "";
-
-render();
-
-}
-
-function showToast(text){
-
-let toast =
-document.getElementById("toast");
-
-toast.innerText = text;
-
-toast.style.display = "block";
-
-setTimeout(()=>{
-
-toast.style.display="none";
-
-},2000);
-
-}
-  
-</script>
-
-<div id="toast"
-style="
-position:fixed;
-bottom:20px;
-right:20px;
-background:#333;
-color:white;
-padding:10px 16px;
-border-radius:8px;
-display:none;
-z-index:2000;
-">
-Saved
-</div>
-
-<script>
-
-const canvasPanel=document.getElementById("snowPanel");
-const ctxPanel=canvasPanel.getContext("2d");
-
-function resizePanel(){
-canvasPanel.width=window.innerWidth;
-canvasPanel.height=window.innerHeight;
-}
-
-resizePanel();
-window.addEventListener("resize",resizePanel);
-
-let snowPanel=[];
-
-for(let i=0;i<160;i++){
-
-snowPanel.push({
-x:Math.random()*canvasPanel.width,
-y:Math.random()*canvasPanel.height,
-r:Math.random()*3+1,
-speed:Math.random()*1+0.6
-});
-
-}
-
-function drawPanel(){
-
-ctxPanel.clearRect(
-0,
-0,
-canvasPanel.width,
-canvasPanel.height
-);
-
-ctxPanel.fillStyle="white";
-
-snowPanel.forEach(f=>{
-
-ctxPanel.beginPath();
-
-ctxPanel.arc(
-f.x,
-f.y,
-f.r,
-0,
-Math.PI*2
-);
-
-ctxPanel.fill();
-
-f.y+=f.speed;
-
-if(f.y>canvasPanel.height){
-
-f.y=0;
-f.x=Math.random()*canvasPanel.width;
-
-}
-
-});
-
-requestAnimationFrame(drawPanel);
-
-}
-
-drawPanel();
-
-</script>
-  
-</body>
-</html>
