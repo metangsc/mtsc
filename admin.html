@@ -502,8 +502,15 @@ style="width:180px;border-radius:10px;display:none;margin-top:6px;">
 
 <textarea id="script" placeholder="Script Code"></textarea>
 
-<button onclick="addScript()">
+<button onclick="addScript()" id="addBtn">
 ➕ Add Script
+</button>
+
+<button 
+onclick="cancelEdit()" 
+id="cancelBtn"
+style="display:none;background:#555;">
+❌ Cancel Edit
 </button>
 
 <input 
@@ -576,6 +583,7 @@ let dbLoaded = false;
   
 let currentPage = 1;
 let perPage = 12;
+let editingId = null;
 
 fetch("database.json")
 .then(res => res.json())
@@ -1020,6 +1028,39 @@ return text;
 
 function addScript(){
 
+/* ถ้าอยู่ในโหมดแก้ */
+
+if(editingId){
+
+let index =
+data.scripts.findIndex(s=>s.id===editingId);
+
+if(index!==-1){
+
+data.scripts[index].title =
+document.getElementById("title").value.trim();
+
+data.scripts[index].category =
+document.getElementById("category").value.trim();
+
+data.scripts[index].thumb =
+document.getElementById("thumb").value;
+
+data.scripts[index].script =
+document.getElementById("script").value.trim();
+
+showToast("✅ Script updated");
+
+cancelEdit();
+
+render();
+
+return;
+
+}
+
+}
+
 let thumbInput=document.getElementById("thumb").value;
   
 let title=document.getElementById("title").value.trim();
@@ -1132,19 +1173,31 @@ return;
 
 let s=data.scripts[index];
 
+/* ใส่ข้อมูลกลับฟอร์ม */
+
 document.getElementById("title").value = s.title || "";
-document.getElementById("category").value = s.category || "blox";
+document.getElementById("category").value = s.category || "";
 document.getElementById("thumb").value = s.thumb || "";
 document.getElementById("script").value = s.script || "";
-/* ✅ แสดงรูปตอน edit */
+
+/* แสดงรูป */
 
 previewThumb();
 
-data.scripts.splice(index,1);
+/* ตั้งโหมดแก้ */
 
-render();
+editingId = id;
+
+/* เปลี่ยนปุ่ม */
+
+document.getElementById("addBtn").innerText =
+"💾 Update Script";
+
+document.getElementById("cancelBtn").style.display =
+"inline-block";
 
 }
+  
 /* DELETE */
 
 function deleteScript(id){
@@ -1504,6 +1557,31 @@ setTimeout(()=>{
 toast.style.display="none";
 
 },2000);
+
+}
+
+function cancelEdit(){
+
+editingId = null;
+
+/* เคลียร์ฟอร์ม */
+
+document.getElementById("title").value="";
+document.getElementById("category").value="";
+document.getElementById("thumb").value="";
+document.getElementById("script").value="";
+
+document.getElementById("thumbPreview").style.display="none";
+
+/* คืนปุ่ม */
+
+document.getElementById("addBtn").innerText =
+"➕ Add Script";
+
+document.getElementById("cancelBtn").style.display =
+"none";
+
+showToast("Cancelled");
 
 }
 
