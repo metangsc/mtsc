@@ -268,6 +268,10 @@ Login
 
 <h2>Script Manager</h2>
 
+<button onclick="toggleDark()">
+🌙 Dark Mode
+</button>
+
 <input id="title" placeholder="Title">
 
 <select id="category">
@@ -1068,6 +1072,47 @@ padding:20px;
 white-space:pre-wrap;
 }
 
+/* ===== DARK MODE ===== */
+
+.dark{
+background:#111;
+color:white;
+}
+
+.dark .formBox{
+background:linear-gradient(
+145deg,
+#1a1a1a,
+#111
+);
+}
+
+.dark .listBox{
+background:linear-gradient(
+145deg,
+#1a1a1a,
+#111
+);
+}
+
+.dark .card{
+background:#1a1a1a;
+color:white;
+}
+
+.dark input,
+.dark textarea,
+.dark select{
+background:#111;
+color:white;
+border:1px solid #333;
+}
+
+.dark pre{
+background:#000;
+color:#0f0;
+}
+
 </style>
 
 </head>
@@ -1293,6 +1338,26 @@ toast.style.display="none";
 
 },2000);
 
+}
+
+function toggleDark(){
+
+document.body.classList.toggle("dark");
+
+/* บันทึกสถานะ */
+
+if(document.body.classList.contains("dark")){
+localStorage.setItem("darkmode","on");
+}else{
+localStorage.setItem("darkmode","off");
+}
+
+}
+
+/* โหลดสถานะ */
+
+if(localStorage.getItem("darkmode")==="on"){
+document.body.classList.add("dark");
 }
   
 </script>
