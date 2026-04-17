@@ -1412,30 +1412,28 @@ if(document.body.classList.contains("dark")){
 
 localStorage.setItem("darkmode","on");
 
-/* เปลี่ยนเป็น Sun */
+/* Sun icon (สมส่วนจริง) */
 
 icon.innerHTML = `
-icon.innerHTML = `
-<circle cx="12" cy="12" r="4"/>
-<line x1="12" y1="2" x2="12" y2="4"/>
-<line x1="12" y1="20" x2="12" y2="22"/>
-<line x1="4.22" y1="4.22" x2="5.64" y2="5.64"/>
-<line x1="18.36" y1="18.36" x2="19.78" y2="19.78"/>
-<line x1="2" y1="12" x2="4" y2="12"/>
-<line x1="20" y1="12" x2="22" y2="12"/>
-<line x1="4.22" y1="19.78" x2="5.64" y2="18.36"/>
-<line x1="18.36" y1="5.64" x2="19.78" y2="4.22"/>
+<path fill="white"
+d="M12 4V2m0 20v-2m8-8h2M2 12H4m12.95 
+6.95l1.41 1.41M4.64 4.64l1.41 
+1.41m12.9 0l1.41-1.41M4.64 
+19.36l1.41-1.41M12 8a4 
+4 0 100 8 4 4 0 000-8z"/>
 `;
 
 }else{
 
 localStorage.setItem("darkmode","off");
 
-/* เปลี่ยนกลับ Moon */
+/* Moon icon (สมส่วนจริง) */
 
 icon.innerHTML = `
-<path d="M21 12.79A9 9 0 1 1 11.21 3 
-7 7 0 0 0 21 12.79z"/>
+<path fill="white"
+d="M21 12.79A9 9 0 0 
+1 11.21 3 7 7 0 
+1 0 21 12.79z"/>
 `;
 
 }
@@ -1448,14 +1446,23 @@ if(localStorage.getItem("darkmode")==="on"){
 
 document.body.classList.add("dark");
 
-/* เปลี่ยน icon เป็น Sun */
+let icon =
+document.getElementById("darkIcon");
 
-document.getElementById("darkIcon").innerHTML = `
-<path d="M6.76 4.84l-1.8-1.79-1.41 
-1.41 1.79 1.8 1.42-1.42zM1 13h3v-2H1v2zm10 
-9h2v-3h-2v3zm9-9v-2h-3v2h3zM17.24 
-19.16l1.79 1.8 1.41-1.41-1.8-1.79-1.4 
-1.4zM12 6a6 6 0 100 12 6 6 0 000-12z"/>
+/* ตั้งเป็น Sun ตอนโหลด */
+
+icon.innerHTML = `
+<path fill="white"
+d="M12 4V2m0 20v-2m8-8h2M2 
+12H4m12.95 
+6.95l1.41 
+1.41M4.64 
+4.64l1.41 
+1.41m12.9 
+0l1.41-1.41M4.64 
+19.36l1.41-1.41M12 
+8a4 4 0 100 
+8 4 4 0 000-8z"/>
 `;
 
 }
