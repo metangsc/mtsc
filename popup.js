@@ -88,7 +88,7 @@ document.addEventListener("DOMContentLoaded", () => {
 
 <i data-lucide="sparkles"></i>
 
-<span>𝗖𝗼𝗺𝗽𝗹𝗲𝘁𝗲𝗱 𝘁𝗵𝗲 𝗦𝘁𝗲𝗽</span>
+<span>ทำตามขั้นตอน / 𝗖𝗼𝗺𝗽𝗹𝗲𝘁𝗲 𝗦𝘁𝗲𝗽𝘀</span>
 
 </div>
 <button id="pfYT1" class="pf-btn pf-red">
