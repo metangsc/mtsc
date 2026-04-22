@@ -82,7 +82,7 @@ document.addEventListener("DOMContentLoaded", () => {
   document.body.insertAdjacentHTML("beforeend", `
   <div class="pf-overlay">
     <div class="pf-box">
-      <div class="pf-mascotWrap"><img src="mascot.png" class="pf-mascot"></div>
+      <div class="pf-mascotWrap"><img src="mascot1.png" class="pf-mascot"></div>
       <div class="pf-panel">
         <div style="margin-bottom:10px;color:white;display:flex;align-items:center;gap:8px;justify-content:center;">
 
