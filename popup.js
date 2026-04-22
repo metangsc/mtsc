@@ -99,14 +99,14 @@ document.addEventListener("DOMContentLoaded", () => {
 
 <button id="pfYT2" class="pf-btn pf-red pf-disabled">
   <i data-lucide="message-circle"></i>
-  <span>𝗟𝗶𝗸𝗲 & 𝗖𝗼𝗺𝗺𝗲𝗻𝘁</span>
+  <span>ไลก์ คอมเมนต์ / 𝗟𝗶𝗸𝗲 & 𝗖𝗼𝗺𝗺𝗲𝗻𝘁</span>
 </button>
 <div id="pfYTStatus2" class="pf-status">Locked!</div>
 
         <!-- ปุ่มใหม่ -->
 <button id="pfYT3" class="pf-btn pf-red pf-disabled">
   <i data-lucide="video"></i>
-  <span>𝗟𝗶𝗸𝗲 & 𝗖𝗼𝗺𝗺𝗲𝗻𝘁</span>
+  <span>ไลก์ คอมเมนต์ / 𝗟𝗶𝗸𝗲 & 𝗖𝗼𝗺𝗺𝗲𝗻𝘁</span>
 </button>
 <div id="pfYTStatus3" class="pf-status">Locked!</div>
 
