@@ -338,7 +338,7 @@ let scripts=[]
 let filtered=[]
 let trendingData=[]
 
-fetch("https://lingering-block-1da8.github35519.workers.dev/database.json")
+fetch("database.json")
 .then(res=>res.json())
 .then(data=>{
 
@@ -352,9 +352,6 @@ filtered=[...scripts]
 renderTrending()
 render()
 
-})
-.catch(err=>{
-console.error("โหลด database ไม่ได้:", err)
 })
 
 /* TRENDING */
@@ -475,13 +472,11 @@ render()
 
 document.getElementById("search").addEventListener("input",e=>{
 
-let t = e.target.value.toLowerCase()
+let t=e.target.value.toLowerCase()
 
-filtered = scripts.filter(s => 
-  (s.title || "").toLowerCase().includes(t)
-)
+filtered=scripts.filter(s=>s.title.toLowerCase().includes(t))
 
-currentPage = 1
+currentPage=1
 
 render()
 
