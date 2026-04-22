@@ -127,7 +127,7 @@
       "category": "blox",
       "thumb": "https://img.youtube.com/vi/-lCf-dBK1cs/maxresdefault.jpg",
       "script": "repeat task.wait() until game:IsLoaded() and game:GetService(\"Players\") and game.Players.LocalPlayer and game.Players.LocalPlayer:FindFirstChild(\"PlayerGui\")\nloadstring(game:HttpGet(\"https://raw.githubusercontent.com/Teddyseetink/Haidepzai/refs/heads/main/TEDDYHUB-FREEMIUM\"))()",
-      "trending": false
+      "trending": true
     },
     {
       "id": 1776841474245,
@@ -135,7 +135,7 @@
       "category": "blox",
       "thumb": "https://img.youtube.com/vi/NxcjNO1i2vw/maxresdefault.jpg",
       "script": "loadstring(game:HttpGet(\"https://raw.githubusercontent.com/HieuDepTrai-Z/Dev_Orange/refs/heads/main/OrangeHub.lua\"))()",
-      "trending": false
+      "trending": true
     },
     {
       "id": 1776841529077,
@@ -143,7 +143,7 @@
       "category": "blox",
       "thumb": "https://img.youtube.com/vi/8nZ66uuYJEA/maxresdefault.jpg",
       "script": "getgenv().SCRIPT_KEY = \"KEYLESS\" loadstring(game:HttpGet(\"https://raw.githubusercontent.com/DEKTHAT0XX/all_hub/refs/heads/main/DEKTAI.lua\"))()",
-      "trending": false
+      "trending": true
     }
   ]
 }
