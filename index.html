@@ -491,7 +491,7 @@ filtered=[...scripts]
 }else{
 
 filtered=scripts.filter(
-s=>s.category==cat
+s => s.category && s.category.toLowerCase().trim().includes(cat.toLowerCase().trim())
 )
 
 }
