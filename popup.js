@@ -10,7 +10,8 @@ document.addEventListener("DOMContentLoaded", () => {
   .pf-mascotWrap{opacity:0; transform:translateY(-60px) scale(0.92);transition: all 0.7s cubic-bezier(0.22,1,0.36,1);}
   .pf-mascotWrap.show{opacity:1; transform:translateY(0) scale(1);}
   .pf-panel{width:320px; padding:20px; border-radius:16px;background:rgba(255,255,255,0.08); backdrop-filter:blur(20px);text-align:center; box-shadow:0 0 15px rgba(255,255,255,0.5);opacity:0; transform:translateY(20px); transition: all 0.7s cubic-bezier(0.22,1,0.36,1);
-
+  max-height:90vh;
+  overflow-y:auto;
   }
   .pf-panel.show{opacity:1; transform:translateY(0);}
   .pf-mascot{width:200px; filter:drop-shadow(0 0 15px rgba(255,255,255,0.6)); animation:aura 2s infinite alternate;}
