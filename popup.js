@@ -2,7 +2,10 @@ document.addEventListener("DOMContentLoaded", () => {
 
   const style = document.createElement("style");
   style.innerHTML = `/* CSS YOU (unchanged) */ 
-  .pf-overlay{position:fixed; inset:0;backdrop-filter:blur(12px);background:rgba(0,0,0,.25);display:flex; justify-content:center; align-items:center;z-index:999999;font-family:sans-serif;}
+  .pf-overlay{position:fixed; inset:0;backdrop-filter:blur(12px);background:rgba(0,0,0,.25);display:flex; justify-content:center; align-items:center;z-index:999999;font-family:sans-serif;
+  overflow-y:auto;
+  padding:20px;
+}
   .pf-box{display:flex; flex-direction:column; align-items:center; gap:20px;}
   .pf-mascotWrap{opacity:0; transform:translateY(-60px) scale(0.92);transition: all 0.7s cubic-bezier(0.22,1,0.36,1);}
   .pf-mascotWrap.show{opacity:1; transform:translateY(0) scale(1);}
