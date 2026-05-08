@@ -421,7 +421,8 @@ scriptData.title;
 
   
 let clickedOnce = false;
-let copyExpired = true;
+let copyExpired = false;
+let copyTimer = null;
 
 function copyScript(){
 
@@ -460,14 +461,22 @@ setTimeout(()=>{
 toast.classList.remove("show");
 },2000);
 
-// หลัง Copy → เริ่มจับเวลา 20 วิ
-clickedOnce = false;
+// รีเซ็ต timer เดิม
+clearTimeout(copyTimer);
 
-setTimeout(()=>{
+// อนุญาตให้ Copy ได้ต่อภายใน 20 วิ
+copyExpired = false;
+clickedOnce = true;
+
+// เริ่มนับใหม่ 20 วิ
+copyTimer = setTimeout(()=>{
 
 copyExpired = true;
+clickedOnce = false;
 
 },20000);
+
+return;
 
 }
 
