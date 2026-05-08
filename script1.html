@@ -421,22 +421,15 @@ scriptData.title;
 
   
 let clickedOnce = false;
-let copyCooldown = false;
-  
+let copyExpired = false;
+
 function copyScript(){
 
-// ถ้าหมดเวลาแล้ว → เปิด Ads ใหม่
-if(copyCooldown){
+// ถ้าหมดเวลาแล้ว → รีระบบใหม่
+if(copyExpired){
 
-copyCooldown = false;
-clickedOnce = true;
-
-window.open(
-"https://airconditionstrodefist.com/zamjdwmm?key=4632b457606c55aeef029a52d64159f6",
-"_blank"
-);
-
-return;
+clickedOnce = false;
+copyExpired = false;
 
 }
 
@@ -454,7 +447,7 @@ return;
 
 }
 
-// Copy Script
+// ครั้งที่สอง → Copy
 navigator.clipboard.writeText(
 document.getElementById("script").value
 );
@@ -467,12 +460,12 @@ setTimeout(()=>{
 toast.classList.remove("show");
 },2000);
 
-// เริ่มจับเวลา 30 วิ
-copyCooldown = false;
+// หลัง Copy → เริ่มจับเวลา 20 วิ
+clickedOnce = false;
 
 setTimeout(()=>{
 
-copyCooldown = true;
+copyExpired = true;
 
 },20000);
 
