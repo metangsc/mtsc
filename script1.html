@@ -425,11 +425,11 @@ let copyCooldown = false;
   
 function copyScript(){
 
-// ถ้าหมดเวลาแล้ว → ต้องเปิด Ads ใหม่
+// ถ้าหมดเวลาแล้ว → เปิด Ads ใหม่
 if(copyCooldown){
 
-clickedOnce = false;
 copyCooldown = false;
+clickedOnce = true;
 
 window.open(
 "https://airconditionstrodefist.com/zamjdwmm?key=4632b457606c55aeef029a52d64159f6",
@@ -468,6 +468,8 @@ toast.classList.remove("show");
 },2000);
 
 // เริ่มจับเวลา 30 วิ
+copyCooldown = false;
+
 setTimeout(()=>{
 
 copyCooldown = true;
