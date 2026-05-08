@@ -424,31 +424,49 @@ let clickedOnce = false;
 let copyExpired = false;
 let copyTimer = null;
 
+let adWaiting = false;
+let adTimer = null;
+
 function copyScript(){
 
-// ถ้าหมดเวลาแล้ว → รีระบบใหม่
+// token หมด
 if(copyExpired){
 
 clickedOnce = false;
-copyExpired = false;
+adWaiting = false;
 
 }
 
-// ครั้งแรก → เปิด Ads
+// ยังไม่ผ่าน Ads
 if(!clickedOnce){
 
 clickedOnce = true;
+adWaiting = true;
 
 window.open(
 "https://airconditionstrodefist.com/zamjdwmm?key=4632b457606c55aeef029a52d64159f6",
 "_blank"
 );
 
+// มีเวลา 30 วิในการกลับมากด Copy
+clearTimeout(adTimer);
+
+adTimer = setTimeout(()=>{
+
+clickedOnce = false;
+adWaiting = false;
+
+},30000);
+
 return;
 
 }
 
-// ครั้งที่สอง → Copy
+// ผ่าน Ads แล้ว → Copy
+if(adWaiting){
+
+adWaiting = false;
+
 navigator.clipboard.writeText(
 document.getElementById("script").value
 );
@@ -461,14 +479,9 @@ setTimeout(()=>{
 toast.classList.remove("show");
 },2000);
 
-// รีเซ็ต timer เดิม
+// token ใช้งาน 5 วิ
 clearTimeout(copyTimer);
 
-// อนุญาตให้ Copy ได้ต่อภายใน 20 วิ
-copyExpired = false;
-clickedOnce = true;
-
-// เริ่มนับใหม่ 20 วิ
 copyTimer = setTimeout(()=>{
 
 copyExpired = true;
@@ -476,7 +489,7 @@ clickedOnce = false;
 
 },5000);
 
-return;
+}
 
 }
 
