@@ -421,51 +421,19 @@ scriptData.title;
 
   
 let clickedOnce = false;
-let copyExpired = false;
-let copyTimer = null;
-
 let adWaiting = false;
+
+let tokenActive = false;
+
 let adTimer = null;
+let tokenTimer = null;
 
 function copyScript(){
 
-// token หมด
-if(copyExpired){
-
-clickedOnce = false;
-adWaiting = false;
-
-}
-
-// ยังไม่ผ่าน Ads
-if(!clickedOnce){
-
-clickedOnce = true;
-adWaiting = true;
-
-window.open(
-"https://airconditionstrodefist.com/zamjdwmm?key=4632b457606c55aeef029a52d64159f6",
-"_blank"
-);
-
-// มีเวลา 30 วิในการกลับมากด Copy
-clearTimeout(adTimer);
-
-adTimer = setTimeout(()=>{
-
-clickedOnce = false;
-adWaiting = false;
-
-},30000);
-
-return;
-
-}
-
-// ผ่าน Ads แล้ว → Copy
-if(adWaiting){
-
-adWaiting = false;
+// =========================
+// มี Token อยู่ → Copy ได้เลย
+// =========================
+if(tokenActive){
 
 navigator.clipboard.writeText(
 document.getElementById("script").value
@@ -479,12 +447,63 @@ setTimeout(()=>{
 toast.classList.remove("show");
 },2000);
 
-// token ใช้งาน 5 วิ
-clearTimeout(copyTimer);
+return;
 
-copyTimer = setTimeout(()=>{
+}
 
-copyExpired = true;
+// =========================
+// ยังไม่ดู Ads
+// =========================
+if(!clickedOnce){
+
+clickedOnce = true;
+adWaiting = true;
+
+window.open(
+"https://airconditionstrodefist.com/zamjdwmm?key=4632b457606c55aeef029a52d64159f6",
+"_blank"
+);
+
+// ต้องกลับมากดภายใน 30 วิ
+clearTimeout(adTimer);
+
+adTimer = setTimeout(()=>{
+
+clickedOnce = false;
+adWaiting = false;
+
+},30000);
+
+return;
+
+}
+
+// =========================
+// ผ่าน Ads แล้ว → Copy ครั้งแรก
+// =========================
+if(adWaiting){
+
+adWaiting = false;
+tokenActive = true;
+
+navigator.clipboard.writeText(
+document.getElementById("script").value
+);
+
+let toast=document.getElementById("toast");
+
+toast.classList.add("show");
+
+setTimeout(()=>{
+toast.classList.remove("show");
+},2000);
+
+// Token ใช้ได้ 5 วิ
+clearTimeout(tokenTimer);
+
+tokenTimer = setTimeout(()=>{
+
+tokenActive = false;
 clickedOnce = false;
 
 },5000);
@@ -492,7 +511,6 @@ clickedOnce = false;
 }
 
 }
-
 
 
 const canvas=document.getElementById("snow")
